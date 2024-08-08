@@ -4,7 +4,67 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<style>
+    .sns_txt_wrap{
+        position: relative;
+        top: 54px;
+        width: 1280px;
+        margin: 0 auto;
+    }
+    .snsWrap{
+        overflow: hidden;
+        position: absolute;
+        right: 116px;
+        top:2px;
+        display: inline-block;
+        display: inline-block; 
+        margin:0
+    }
+    body{
+        font-family: 'Noto Sans';
+    }
+    .inner_wrap{
+        display: flex;
+        justify-content:center;
+        align-items: center;
+        height: 273px;
+        
+        position: relative;
+        width: 100%;
+        max-width: 1280px;
+        margin:0 auto;
+        box-sizing: border-box;
+    }
+    .txt{
+        color: #000;
+        font-weight: 700;
+        line-height: 1.3636;
+        letter-spacing: -1.76px;
+        text-align:center;
+    }
+    ol, ul{
+        list-style: none;
+    }
+</style>
 <body>
-    17:56 박영빈
+    <div class="inner_wrap">
+        <p class="txt" style="font-size: 42px;">
+            다양한 CU 소식들을 만나보세요.
+        </p>
+    </div>
+    <div class="sns_txt_wrap">
+
+        <ul class="snsWrap">
+            <li><a href="#"><img src="https://cu.bgfretail.com/images/common/new/ico_facebook.png" alt="Twitter"></a></li>
+            <li><a href="#"><img src="https://cu.bgfretail.com/images/common/new/ico_twitter.png" alt="Facebook"></a></li>
+            <li><a href="#" onclick="urlcopy(this.href); return false;"><img src="https://cu.bgfretail.com/images/common/new/ico_copyurl.png" alt="url copy"></a></li>
+        </ul>
+        <ul class="txtControll">
+            <div id="holder">
+                <li class="largeFont"><a href="javascript:void(0);"><img src="https://cu.bgfretail.com/images/common/new/ico_plus.png" alt="크게"></a></li>
+                <li class="smallFont"><a href="javascript:void(0);"><img src="https://cu.bgfretail.com/images/common/new/ico_minus.png" alt="작게"></a></li>
+            </div>
+        </ul>
+    </div>
 </body>
 </html>
