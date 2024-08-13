@@ -7,16 +7,16 @@
 <style>
     .sns_txt_wrap{
         position: relative;
-        top: px;
-        width: 1280px;
-        margin: 0 auto;
+        /* top: px; */
+        /* width: 1280px 100px; */
+        /* margin: 0 auto; */
     }
     .snsWrap{
         position: absolute;
         right: 116px;
-        top:2px;
+        /* top:2px; */
         display: inline-block;
-        margin:0
+        /* margin:0 */
     }
     body{
         font-family: 'Noto Sans';
@@ -48,17 +48,16 @@
     }
     .txtControll{
         position: absolute;
-        overflow: hidden;
+        /* overflow: hidden; */
         right: 30px;
-        top:2px;
+        /* top:2px; */
         display: inline-block;
-        margin:0
+        /* margin:0 */
     }
     #contents{
         /* position: relative; */
         max-width: 100%;
-        margin: 0 auto 0;
-        padding-bottom: 300px;
+        margin: 100px 0 0 0;
     }
     .bbsSearch{
         overflow: hidden;
@@ -67,28 +66,178 @@
         text-align:right;
         display:block;
     }
+    table{
+        border-spacing: 0;
+        border-collapse:collapse;
+        width:100%;
+    }
+    .imgTd{
+        width:17%;
+        /* width: 160px;
+        height: 150px; */
+    }
+    .contentTd{
+        /* width:70% */
+        padding-left:30px;
+        /* margin-left:10px; */
+    }
+    a{
+        color:black;
+        text-decoration: none;
+    }
+    dt, dd{
+        font-size:0.9em;
+        color:gray;
+        display:inline;
+        /* margin-inline-start: 40px; */
+    }
+    dd{
+        margin-inline-start:0px;
+    }
+    .date_write{
+        display: block;
+        overflow: hidden;
+        width: 100%;
+        background-color: #fff;
+        /* position: absolute; */
+        left: 0px;
+        bottom: 0px;
+    }
+    .thumbnail{
+        display: block;
+        overflow: hidden;
+        border: 1px solid #dcdcdc;
+        height: 118px;
+        width: 158px;
+    }
+    tr{
+        border-collapse: collapse;
+        border-top: 1px solid #b4b4b4;
+        border-bottom: 1px solid #b4b4b4;
+
+    }
+    #showAll{
+        width: 75px;
+        height: 28px;
+        line-height: 28px;
+        border: 1px solid #b4b4b4;
+        background-color: #f5f5f5;
+        display: inline-block;
+        text-align: center;
+        vertical-align: middle;
+    }
+    #search2{
+        vertical-align: middle;
+        border: 1px solid #b4b4b4;
+        height: 30px;
+        line-height: 30px;
+    }
+    input#searchKeyword{
+        vertical-align: middle;
+        border: 1px solid #b4b4b4;
+        height: 28px;
+        line-height: 28px;
+    }
 </style>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+    const data = [
+        {
+            src: "https://cdn2.bgfretail.com/bgfcompany/files/news/thumb/345E3889742D431F81273B2DD1B287F2.jpg"
+            , title: "CU머니 같이 쓰고 5만원 모임비 받자"
+            , date: "2024.08.01"
+        }
+        , {
+            src: "https://cdn2.bgfretail.com/bgfcompany/files/news/thumb/BB73726808484FF292573042FA1EE229.jpg"
+            , title: "함께해요 대한민국! 더 뜨거워진 쓔퍼세일"
+            , date : "2024.08.01"
+        }
+        , {
+            src: "https://cdn2.bgfretail.com/bgfcompany/files/news/thumb/06943A5EB3304178BC8B23C8073A0A5B.jpg"
+            , title: "8월 이벤트 모아보기"
+            , date : "2024.08.01"
+        }
+        , {
+            src: "https://cdn2.bgfretail.com/bgfcompany/files/news/thumb/86F4FAE3FAD64F59B825658604E1B0C8.jpg"
+            , title: "CU 창업 추천하고 소개비 받자!"
+            , date : "2024.07.29"
+        }
+        , {
+            src: "https://cdn2.bgfretail.com/bgfcompany/files/news/thumb/89852621069C418D8C5484404F5C88D3.jpg"
+            , title: "QR 결제하면 get아아XL 겟이득"
+            , date : "2024.07.01"
+        }
+        , {
+            src: "https://cdn2.bgfretail.com/bgfcompany/files/news/thumb/AE034D6CCB334C718AE77EA0F217A99E.jpg"
+            , title: "더 강력해진 CU 쓔퍼세일"
+            , date : "2024.07.01"
+        }
+        , {
+            src: "https://cdn2.bgfretail.com/bgfcompany/files/news/thumb/4128711454204646B5004D23922E6CD9.jpg"
+            , title: "7월 행사 모아보기"
+            , date : "2024.07.01"
+        }
+        , {
+            src: "https://cdn2.bgfretail.com/bgfcompany/files/news/thumb/E124C14DED734E298427DD102F57894E.png"
+            , title: "라이프스타일 맞춤 CU구독!"
+            , date : "2024.07.01"
+        }
+        , {
+            src: "https://cdn2.bgfretail.com/bgfcompany/files/news/thumb/96ED1B3273A1414EA8DA3010537AC45C.jpg"
+            , title: "CU머니 멤버 초대 시 모임비 최대 5만원!"
+            , date : "2024.07.01"
+        }
+        , {
+            src: "https://cdn2.bgfretail.com/bgfcompany/files/news/thumb/287053C76A6E451298203FEEB66CBB1D.jpg"
+            , title: "7월엔 CU머니로 시원한 혜택 받기"
+            , date : "2024.07.01"
+        }        
+    ]
+    
+    const getEl = (param) => document.getElementById(param);
+    document.addEventListener("DOMContentLoaded",()=>{
+        console.log($("table tbody"));
+        data.forEach((el) => {
+            $("table tbody").append(`
+            <tr>
+                <td class="imgTd">
+                    <img class="thumbnail" src=${el.src}>
+                </td>
+                <td class="contentTd">
+                    <div class="preview_conts">
+                        <h3><a>${el.title}</a></h3>
+                        <p><a>※ 해당 이벤트는 포켓CU APP에서도 확인하실 수 있습니다.  </a></p>
+                        <dl class="date_write">
+                            <dt>작성일 :</dt>
+                            <dd>${el.date}</dd>
+                        </dl>
+                    </div>
+                </td>
+            </tr>`);
+        })
+    })
+
+</script>
 <body>
-<div>
+<div id="upperDiv">
     <div class="inner_wrap">
         <p class="txt" style="font-size: 42px;">
             다양한 CU 소식들을 만나보세요.
         </p>
     </div>
-    <div class="sns_txt_wrap">
-
-        <ul class="snsWrap">
-            <li><a href="#"><img src="https://cu.bgfretail.com/images/common/new/ico_facebook.png" alt="Twitter"></a></li>
-            <li><a href="#"><img src="https://cu.bgfretail.com/images/common/new/ico_twitter.png" alt="Facebook"></a></li>
-            <li><a href="#" onclick="urlcopy(this.href); return false;"><img src="https://cu.bgfretail.com/images/common/new/ico_copyurl.png" alt="url copy"></a></li>
-        </ul>
-        <ul class="txtControll">
-            <div id="holder">
-                <li class="largeFont"><a href="javascript:void(0);"><img src="https://cu.bgfretail.com/images/common/new/ico_plus.png" alt="크게"></a></li>
-                <li class="smallFont"><a href="javascript:void(0);"><img src="https://cu.bgfretail.com/images/common/new/ico_minus.png" alt="작게"></a></li>
-            </div>
-        </ul>
-    </div>
+</div>
+<div class="sns_txt_wrap">
+    <ul class="snsWrap">
+        <li><a href="#"><img src="https://cu.bgfretail.com/images/common/new/ico_facebook.png" alt="Twitter"></a></li>
+        <li><a href="#"><img src="https://cu.bgfretail.com/images/common/new/ico_twitter.png" alt="Facebook"></a></li>
+        <li><a href="#" onclick="urlcopy(this.href); return false;"><img src="https://cu.bgfretail.com/images/common/new/ico_copyurl.png" alt="url copy"></a></li>
+    </ul>
+    <ul class="txtControll">
+        <div id="holder">
+            <li class="largeFont"><a href="javascript:void(0);"><img src="https://cu.bgfretail.com/images/common/new/ico_plus.png" alt="크게"></a></li>
+            <li class="smallFont"><a href="javascript:void(0);"><img src="https://cu.bgfretail.com/images/common/new/ico_minus.png" alt="작게"></a></li>
+        </div>
+    </ul>
 </div>
 <div id="contents" class="brand wide">
 
@@ -98,14 +247,22 @@
             <option value="type1">제목</option>
             <option value="type2">내용</option>
         </select>
-        <label style="display: none;">검색</label><label style="display: none;">검색</label><input id="searchKeyword" name="searchKeyword" style="width:168px;" class="input_text" type="text" value="">
+        <label style="display: none;">검색</label>
+        <input id="searchKeyword" name="searchKeyword" style="width:168px;" class="input_text" type="text" value="">
         <label for="searchKeyword" style="display: none;">
-                <span>
-                    <a href="javascript:newsSearch(1)"><img src="/images/btn/bbs_search.gif" alt="검색"></a>
-                </span>
+            <span>
+                <a href="javascript:newsSearch(1)"><img src="https://cu.bgfretail.com/images/btn/bbs_search.gif" alt="검색"></a>
+            </span>
         </label>
-        <span class="btnAllView"><a href="javascript:fnNewsList(1)">전체보기</a></span>
+        <span class="btnAllView"><a id="showAll">전체보기</a></span>
     </div>
+</div>
+<div style="width:75%; margin:0 auto; ">
+    <table id="mainTable">
+        <tbody>  
+        </tbody>
+    </table>
+
 </div>
 </body>
 </html>
