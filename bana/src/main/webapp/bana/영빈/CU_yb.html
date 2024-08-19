@@ -114,7 +114,6 @@
         border-collapse: collapse;
         border-top: 1px solid #b4b4b4;
         border-bottom: 1px solid #b4b4b4;
-
     }
     #showAll{
         width: 75px;
@@ -138,6 +137,22 @@
         height: 28px;
         line-height: 28px;
     }
+    #paginationDiv{
+        text-align:center;
+        cursor:pointer;
+    }
+    #paginationDiv li{
+        width: 1.8rem;
+        height: 1.8rem;
+        line-height: 1.8rem;
+        border: 1px solid #b4b4b4;
+        background-color: #f5f5f5;
+        border-radius: 10px;
+    }
+    #paginationDiv li.Current{
+        background-color: #777;
+    }
+    
 </style>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
@@ -192,77 +207,108 @@
             , title: "7월엔 CU머니로 시원한 혜택 받기"
             , date : "2024.07.01"
         }        
-    ]
-    
-    const getEl = (param) => document.getElementById(param);
-    document.addEventListener("DOMContentLoaded",()=>{
-        console.log($("table tbody"));
-        data.forEach((el) => {
-            $("table tbody").append(`
-            <tr>
-                <td class="imgTd">
-                    <img class="thumbnail" src=${el.src}>
-                </td>
-                <td class="contentTd">
-                    <div class="preview_conts">
-                        <h3><a>${el.title}</a></h3>
-                        <p><a>※ 해당 이벤트는 포켓CU APP에서도 확인하실 수 있습니다.  </a></p>
-                        <dl class="date_write">
-                            <dt>작성일 :</dt>
-                            <dd>${el.date}</dd>
-                        </dl>
-                    </div>
-                </td>
-            </tr>`);
-        })
-    })
+    ];
 
+    /**
+     * 
+     */
+    const makeTable = (data) => {
+        if(!data || !Array.isArray(data) || data?.length < 1){
+            throw new Error("데이터가 없습니다");
+        }
+        
+        data?.forEach((el) => {
+            $("table tbody").append(`
+                <tr>
+                    <td class="imgTd">
+                        <img class="thumbnail" src=${el.src}>
+                    </td>
+                    <td class="contentTd">
+                        <div class="preview_conts">
+                            <h3><a>${el.title}</a></h3>
+                            <p><a>※ 해당 이벤트는 포켓CU APP에서도 확인하실 수 있습니다.</a></p>
+                            <dl class="date_write">
+                                <dt>작성일 :</dt>
+                                <dd>${el.date}</dd>
+                            </dl>
+                        </div>
+                    </td>
+                </tr>
+            `);
+        })
+    }
+
+    window.onload = () => {
+        makeTable(data);
+    }
 </script>
 <body>
-<div id="upperDiv">
-    <div class="inner_wrap">
-        <p class="txt" style="font-size: 42px;">
-            다양한 CU 소식들을 만나보세요.
-        </p>
-    </div>
-</div>
-<div class="sns_txt_wrap">
-    <ul class="snsWrap">
-        <li><a href="#"><img src="https://cu.bgfretail.com/images/common/new/ico_facebook.png" alt="Twitter"></a></li>
-        <li><a href="#"><img src="https://cu.bgfretail.com/images/common/new/ico_twitter.png" alt="Facebook"></a></li>
-        <li><a href="#" onclick="urlcopy(this.href); return false;"><img src="https://cu.bgfretail.com/images/common/new/ico_copyurl.png" alt="url copy"></a></li>
-    </ul>
-    <ul class="txtControll">
-        <div id="holder">
-            <li class="largeFont"><a href="javascript:void(0);"><img src="https://cu.bgfretail.com/images/common/new/ico_plus.png" alt="크게"></a></li>
-            <li class="smallFont"><a href="javascript:void(0);"><img src="https://cu.bgfretail.com/images/common/new/ico_minus.png" alt="작게"></a></li>
+    <div id="upperDiv">
+        <div class="inner_wrap">
+            <p class="txt" style="font-size: 42px;">
+                다양한 CU 소식들을 만나보세요.
+            </p>
         </div>
-    </ul>
-</div>
-<div id="contents" class="brand wide">
-
-    <div class="bbsSearch">
-        <select id="search2" name="search2" style="width:80px;">
-            <option value="" selected="selected">선택</option>
-            <option value="type1">제목</option>
-            <option value="type2">내용</option>
-        </select>
-        <label style="display: none;">검색</label>
-        <input id="searchKeyword" name="searchKeyword" style="width:168px;" class="input_text" type="text" value="">
-        <label for="searchKeyword" style="display: none;">
-            <span>
-                <a href="javascript:newsSearch(1)"><img src="https://cu.bgfretail.com/images/btn/bbs_search.gif" alt="검색"></a>
-            </span>
-        </label>
-        <span class="btnAllView"><a id="showAll">전체보기</a></span>
     </div>
-</div>
-<div style="width:75%; margin:0 auto; ">
-    <table id="mainTable">
-        <tbody>  
-        </tbody>
-    </table>
 
-</div>
+    <div class="sns_txt_wrap">
+        <ul class="snsWrap">
+            <li><a href="#"><img src="https://cu.bgfretail.com/images/common/new/ico_facebook.png" alt="Twitter"></a></li>
+            <li><a href="#"><img src="https://cu.bgfretail.com/images/common/new/ico_twitter.png" alt="Facebook"></a></li>
+            <li><a href="#" onclick="urlcopy(this.href); return false;"><img src="https://cu.bgfretail.com/images/common/new/ico_copyurl.png" alt="url copy"></a></li>
+        </ul>
+        <ul class="txtControll">
+            <div id="holder">
+                <li class="largeFont"><a href="javascript:void(0);"><img src="https://cu.bgfretail.com/images/common/new/ico_plus.png" alt="크게"></a></li>
+                <li class="smallFont"><a href="javascript:void(0);"><img src="https://cu.bgfretail.com/images/common/new/ico_minus.png" alt="작게"></a></li>
+            </div>
+        </ul>
+    </div>
+
+    <div id="contents" class="brand wide">
+        <div class="bbsSearch">
+            <select id="search2" name="search2" style="width:80px;">
+                <option value="" selected="selected">선택</option>
+                <option value="type1">제목</option>
+                <option value="type2">내용</option>
+            </select>
+            <label style="display: none;">검색</label>
+            <input id="searchKeyword" name="searchKeyword" style="width:168px;" class="input_text" type="text" value="">
+            <label for="searchKeyword" style="display: none;">
+                <span>
+                    <a href="javascript:newsSearch(1)">
+                        <img src="https://cu.bgfretail.com/images/btn/bbs_search.gif" alt="검색">
+                    </a>
+                </span>
+            </label>
+            <span class="btnAllView"><a id="showAll">전체보기</a></span>
+        </div>
+    </div>
+
+    <div style="width:65%; margin:0 auto; ">
+        <table id="mainTable">
+            <tbody>  
+            </tbody>
+        </table>
+    </div>
+
+    <div id="paginationDiv">
+        <ol>
+            <li><<</li>
+            <li><</li>
+            <li class="Current">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+            <li>></li>
+            <li>>></li>
+        </ol>
+    </div>
 </body>
 </html>
